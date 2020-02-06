@@ -7,7 +7,13 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
+import resources.Validation;
 
 /**
  * FXML Controller class
@@ -16,6 +22,11 @@ import javafx.fxml.Initializable;
  */
 public class PasswordFieldController implements Initializable {
 
+    @FXML
+    private TextField tfdPassworField;
+    @FXML
+    private Label lblMessage;
+    private Validation v = new Validation();
     /**
      * Initializes the controller class.
      */
@@ -23,5 +34,15 @@ public class PasswordFieldController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    
+    @FXML
+    private void tfdPasswordFieldOnAction(KeyEvent event) {
+        
+       if(! v.passwordIsValid(tfdPassworField.getText()))
+           lblMessage.setText("Wrong or Invalid Password");
+       else
+           lblMessage.setText(" ");
+    }
     
 }
